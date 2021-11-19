@@ -33,6 +33,7 @@ before_action :set_task, only: [:show, :edit, :update, :destroy]
   def create
     @task = Task.new(task_params.merge(user_id: current_user.id))
     if @task.save
+      logger.debug "task: たすく「#{@task.name}」を登録しました。"
       redirect_to root_url, notice: "タスク「#{@task.name}」を登録しました。"
     else
       render :new
