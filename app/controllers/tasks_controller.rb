@@ -3,7 +3,7 @@ before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
     @q = current_user.tasks.ransack(params[:q])
-    @tasks = @q.result(distinct: true).recent
+    @tasks = @q.result(distinct: true)
   end
 
   def show
@@ -39,6 +39,7 @@ before_action :set_task, only: [:show, :edit, :update, :destroy]
     end
 
     if @task.save
+      TaskMailer.creation_email(@task).deliver_now
       logger.debug "task: たすく「#{@task.name}」を登録しました。"
       redirect_to root_url, notice: "タスク「#{@task.name}」を登録しました。"
     else
