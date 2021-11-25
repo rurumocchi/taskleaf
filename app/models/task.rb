@@ -1,5 +1,6 @@
 class Task < ApplicationRecord
     has_one_attached :image
+    paginates_per 50
 
     validates :name, presence: true, length: { maximum: 30 }
 
