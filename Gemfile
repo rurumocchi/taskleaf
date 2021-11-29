@@ -52,6 +52,13 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
+# --- Squasherに関するGemを追加 ここから
+group :tools do
+  gem 'squasher', '>= 0.6.0'
+  gem 'capistrano'
+  # gem 'rubocop'  当プロジェクトでは既に導入しているので除外
+end
+
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
